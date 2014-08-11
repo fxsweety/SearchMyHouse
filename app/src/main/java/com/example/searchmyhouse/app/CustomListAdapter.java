@@ -1,12 +1,13 @@
 package com.example.searchmyhouse.app;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import android.app.Activity;
+import android.graphics.Color;
 
 import java.util.ArrayList;
 
@@ -15,13 +16,14 @@ public class CustomListAdapter extends ArrayAdapter<Items> {
     ArrayList<Items> data = new ArrayList<Items>();
     private Context context;
     private int resource;
-    private LayoutInflater inflater;
+    private String[] color;
 
-    public CustomListAdapter(Context context, int resource, ArrayList<Items> items){
+    public CustomListAdapter(Context context, int resource, ArrayList<Items> items, String[] color){
         super(context, resource, items);
         this.context = context;
         this.data = items;
         this.resource = resource;
+        this.color = color;
     }
 
 
@@ -36,13 +38,15 @@ public class CustomListAdapter extends ArrayAdapter<Items> {
             holder = new ViewHolder();
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
             v = inflater.inflate(resource, parent, false);
-            holder.text = (TextView)v.findViewById(R.id.text);
+            //convertView.setBackgroundColor(Color.BLUE);
+            holder.text = (TextView)v.findViewById(R.id.firstLine);
             v.setTag(holder);
 
         }else{
             holder = (ViewHolder)v.getTag();
         }
         holder.text.setText(item.getText());
+        v.setBackgroundColor(Color.parseColor(color[position]));
         return v;
     }
 

@@ -3,7 +3,6 @@ package com.example.searchmyhouse.app;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -30,7 +29,8 @@ public class MainActivity extends ActionBarActivity {
     public void onResume(){
         super.onResume();
         final ListView listview = (ListView) findViewById(R.id.listview);
-        CustomListAdapter adapter = new CustomListAdapter(this, R.layout.listitem_main, items);
+        String[] colors = {"#ffffBB", "#ff654d","#ffffff","#ffffff","#ffffff","#ffffff"};
+        CustomListAdapter adapter = new CustomListAdapter(this, R.layout.listitem_main, items, colors);
         listview.setAdapter(adapter);
     }
 
@@ -43,16 +43,6 @@ public class MainActivity extends ActionBarActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
 
 }
